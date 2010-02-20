@@ -1,0 +1,3 @@
+Normal order would infinately loop when it tries to substitute y with p, as the substitution for p is just p again. With applicative order, the if will avoid evaluating that branch and just return 0 (as x is indeed equal to 0).
+
+Normal order while try to expand the recursively defined p, while applicative order will avoid dealing with it at all.

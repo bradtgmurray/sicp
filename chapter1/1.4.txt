@@ -1,0 +1,4 @@
+(define (a-plus-abs-b a b)
+  ((if (> b 0) + -) a b))
+
+Evaluate the predicate to the if first. If b is greater than zero, use + as the operator. If b is less than zero, use - as the operator. Therefore the function evaluates to (+ a b) if b is positive and (- a b) if b is negative.

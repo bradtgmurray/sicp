@@ -1,0 +1,27 @@
+good-enough? will fail for small numbers. For example, if both numbers (the guess and the actual number) are much smaller than 0.001 then the good-enough? function will return true immediately, even if the numbers are quite different relatively.
+
+Also, since we're dealing with floating point numbers with limited precision, large numbers can also cause problems. When you have large floating point numbers, you lose the bottom digits, since there's only so many digits available for the mantissa. This means it might not be possible to even express a difference in values less than 0.001 when you're dealing with large numbers.
+
+---
+
+(define (good-enough? last-guess guess)
+  (< (abs (- 1 (/ guess last-guess))) 0.0001))
+
+(define (average x y)
+  (/ (+ x y) 2))
+
+(define (improve guess x)
+  (average guess (/ x guess)))
+
+(define (sqrt-iter last-guess guess x)
+  (if (good-enough? last-guess guess)
+      guess
+      (sqrt-iter guess (improve guess x)
+                 x)))
+
+(define (my-sqrt x)
+  (sqrt-iter 1.0 (improve 1.0 x) x))
+
+---
+
+This approach will work better for small and large numbers, as the rate of change will slow down in the same fashion no matter what the size of the number is as the guess approaches the actual sqrt.

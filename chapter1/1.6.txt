@@ -1,0 +1,1 @@
+When calling procedures, arguments are evaluated before the procedure is called. This means that using new-if will cause infinate recursion, as the sqrt-iter branch will always be evaluated before the new-if function is called.
