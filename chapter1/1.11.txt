@@ -1,0 +1,25 @@
+(define (f n)
+  (if (< n 4)
+      n
+      (+ (f (- n 1)) (* 2 (f (- n 2))) (* 3 (f (- n 3))))))
+
+---
+
+f(1) = 1
+f(2) = 2
+f(3) = 3
+f(4) = f(3) + 2*f(2) + 3*f(1)
+
+(define (f n)
+  (define (f-iter f-n f-n-minus-one f-n-minus-two count)
+    (if (= count 0)
+        f-n
+        (f-iter (+ f-n (* 2 f-n-minus-one) (* 3 f-n-minus-two))
+                f-n
+                f-n-minus-one
+                (- count 1))))
+  (if (< n 4)
+      n
+      (f-iter 3 2 1 (- n 3))))
+
+
